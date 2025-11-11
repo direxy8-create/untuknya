@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinta Untukmu 💘</title>
+    <style>
+        body {
+            background-color: #ffcce6;
+            font-family: "Comic Sans MS", cursive;
+            text-align: center;
+            padding-top: 100px;
+            color: #d63384;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        button {
+            font-family: "Comic Sans MS", cursive;
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 102, 178, 0.5);
+        }
+
+        button:hover {
+            background-color: #ff3385;
+            transform: scale(1.1);
+        }
+
+        #question {
+            display: none;
+            margin-top: 40px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .heart {
+            position: fixed;
+            color: #ff99cc;
+            font-size: 24px;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-800px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hai, ada sesuatu buat kamu 💕</h1>
+    <button id="showQuestion">Klik untuk lihat 💌</button>
+
+    <div id="question">
+        <h2>Maukah kamu jadi pacarku? 😳💖</h2>
+        <button id="yesBtn">Iyaa sayang 💞</button>
+        <button id="noBtn">Enggak mauu...</button>
+    </div>
+
+    <script>
+        const showQuestion = document.getElementById("showQuestion");
+        const question = document.getElementById("question");
+        const noBtn = document.getElementById("noBtn");
+        const yesBtn = document.getElementById("yesBtn");
+
+        showQuestion.addEventListener("click", () => {
+            question.style.display = "block";
+            showQuestion.style.display = "none";
+        });
+
+        // Tombol "Gak dulu..." menghindar saat didekati
+        noBtn.addEventListener("mouseover", () => {
+            const areaWidth = window.innerWidth - noBtn.offsetWidth - 50;
+            const areaHeight = window.innerHeight - noBtn.offsetHeight - 50;
+            const newX = Math.random() * areaWidth;
+            const newY = Math.random() * areaHeight;
+            noBtn.style.position = "absolute";
+            noBtn.style.left = newX + "px";
+            noBtn.style.top = newY + "px";
+        });
+
+        yesBtn.addEventListener("click", () => {
+            alert("hahaha! makasihh ayesss sayanggg 💕🥰");
+            createHearts();
+        });
+
+        // Fungsi buat efek hati beterbangan
+        function createHearts() {
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.textContent = "💖";
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.style.top = window.innerHeight + "px";
+                heart.style.fontSize = Math.random() * 20 + 20 + "px";
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 6000);
+            }
+        }
+    </script>
+</body>
+</html>
